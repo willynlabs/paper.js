@@ -1,5 +1,7 @@
+dist
 /.nvmrc
 /node_modules/
-/dist/*/
-/dist/*.min.js
-/dist/paperjs.zip
+
+# misc
+.DS_Store
+.idea
