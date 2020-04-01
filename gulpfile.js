@@ -13,7 +13,8 @@
 var gulp = require('gulp'),
     requireDir = require('require-dir');
 
-requireDir('./gulp/utils');
-requireDir('./gulp/tasks');
+//requireDir('./gulp/utils');
+//requireDir('./gulp/tasks');
+var path2d = require('./gulp/tasks/path2d.js');
 
-gulp.task('default', ['dist']);
+gulp.task('default');

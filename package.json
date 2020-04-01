@@ -1,19 +1,20 @@
 {
-  "name": "paper",
-  "version": "0.12.4",
-  "description": "The Swiss Army Knife of Vector Graphics Scripting",
+  "name": "@willynlabs/path2d",
+  "version": "1.0.6",
+  "description": "A path modeler derived from Paper JS",
   "license": "MIT",
   "homepage": "http://paperjs.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paperjs/paper.js"
+    "url": "https://github.com/willynlabs/paper.js"
   },
-  "bugs": "https://github.com/paperjs/paper.js/issues",
+  "bugs": "https://github.com/willynlabs/paper.js/issues",
   "contributors": [
     "Jürg Lehni <juerg@scratchdisk.com> (http://scratchdisk.com)",
     "Jonathan Puckey <jonathan@studiomoniker.com> (http://studiomoniker.com)"
   ],
   "main": "dist/paper-full.js",
+  "module": "dist/path2d.js",
   "types": "dist/paper.d.ts",
   "scripts": {
     "build": "gulp build",
@@ -22,28 +23,13 @@
     "docs": "gulp docs",
     "load": "gulp load",
     "jshint": "gulp jshint",
-    "test": "gulp test",
-    "preinstall": "npx npm-force-resolutions"
-  },
-  "resolutions": {
-    "graceful-fs": "4.2.3"
+    "test": "gulp test"
   },
   "files": [
-    "AUTHORS.md",
-    "CHANGELOG.md",
-    "dist/",
-    "examples/",
-    "LICENSE.txt",
-    "README.md"
+    "dist"
   ],
   "engines": {
     "node": ">=8.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "gulp jshint --ensure-branch develop",
-      "pre-push": "gulp test --ensure-branch develop"
-    }
   },
   "browser": {
     "canvas": false,
@@ -57,7 +43,7 @@
     "acorn": "~0.5.0",
     "canvas": "^2.4.1",
     "del": "^4.1.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-cached": "^1.1.0",
     "gulp-git-streamed": "^2.8.1",
     "gulp-jshint": "^2.1.0",

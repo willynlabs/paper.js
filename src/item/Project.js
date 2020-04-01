@@ -61,8 +61,11 @@ var Project = PaperScopeItem.extend(/** @lends Project# */{
         // If no view is provided, we create a 1x1 px canvas view just so we
         // have something to do size calculations with.
         // (e.g. PointText#_getBounds)
-        this._view = View.create(this,
-                element || CanvasProvider.getCanvas(1, 1));
+        // We use a proxy for View since we don't expect to draw direclty here
+        // jl 06/11/2016
+        //this._view = View.create(this,
+        //        element || CanvasProvider.getCanvas(1, 1));
+        this._view = new Path2dProxyView(this, element);  // element is null!
         this._selectionItems = {};
         this._selectionCount = 0;
         // See Item#draw() for an explanation of _updateVersion
