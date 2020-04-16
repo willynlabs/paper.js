@@ -63,7 +63,12 @@ var Path2dProxyView = Base.extend({
 
         var project = this._project,
             ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width + 1, canvas.height + 1);
+        // Adjust for pixel ration (done with a scale in CanvasView)
+        if (this._pixelRatio !== 1) {
+            ctx.clearRect(0, 0, canvas.width * this._pixelRatio + 1, canvas.height * this._pixelRatio +1);
+        } else {
+            ctx.clearRect(0, 0, canvas.width + 1, canvas.height + 1);
+        }
         if (project)
             project.draw(ctx, this._matrix, this._pixelRatio);
         this._needsUpdate = false;
