@@ -63,12 +63,21 @@ var Path2dProxyView = Base.extend({
 
         var project = this._project,
             ctx = canvas.getContext('2d');
+
+        // The higher level layers set the transform on the canvas context and we need
+        // the clearRect to draw in pixel space.  save/restore around it.  jl 06/17/2020
+        ctx.save();
+        ctx.setTransform();     // supposed to set to identity
+
         // Adjust for pixel ration (done with a scale in CanvasView)
         if (this._pixelRatio !== 1) {
             ctx.clearRect(0, 0, canvas.width * this._pixelRatio + 1, canvas.height * this._pixelRatio +1);
         } else {
             ctx.clearRect(0, 0, canvas.width + 1, canvas.height + 1);
         }
+
+        ctx.restore();
+
         if (project)
             project.draw(ctx, this._matrix, this._pixelRatio);
         this._needsUpdate = false;
