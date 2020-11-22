@@ -23,7 +23,7 @@ var gulp = require('gulp'),
 var buildOptions = {
     //full: { paperScript: true },
     //core: { paperScript: false },
-    path2d: {paperScript: false, svg: false }
+    path2d: {paperScript: false }
 };
 
 var buildNames = Object.keys(buildOptions);

@@ -64,6 +64,8 @@ var Path2dProxyView = Base.extend({
         var project = this._project,
             ctx = canvas.getContext('2d');
 
+        this._canvas = canvas;      // needed for getTextWidth below.
+
         // The higher level layers set the transform on the canvas context and we need
         // the clearRect to draw in pixel space.  save/restore around it.  jl 06/17/2020
         ctx.save();
@@ -82,6 +84,20 @@ var Path2dProxyView = Base.extend({
             project.draw(ctx, this._matrix, this._pixelRatio);
         this._needsUpdate = false;
         return true;
-    }
+    },
+
+    // This is called for bounds with PointText, which is use in hitTest.  jl 11/17/2020
+    getTextWidth: function(font, lines) {
+        var ctx = this._canvas.getContext('2d'),
+            prevFont = ctx.font,
+            width = 0;
+        ctx.font = font;
+        // Measure the real width of the text. Unfortunately, there is no sane
+        // way to measure text height with canvas.
+        for (var i = 0, l = lines.length; i < l; i++)
+            width = Math.max(width, ctx.measureText(lines[i]).width);
+        ctx.font = prevFont;
+        return width;
+    },
 
 });

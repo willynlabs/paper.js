@@ -133,4 +133,5 @@ var path2d = function(self, undefined) {
 
     /*#*/ include('path2d-export.js');
     return path2d;
+    
 }.call(this, typeof self === 'object' ? self : null);
